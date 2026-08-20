@@ -1,0 +1,260 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNcyTtubP84p623a/nrSBTI",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/nuttawut7967-stack/HW3/blob/main/Matrix%20Multiplication%20HW\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "AwcOuOT74W92"
+      },
+      "source": [
+        "HW 5 เขียน function คูณ matrix\n",
+        "\n",
+        "แล้ว test กับ matrix ขนาด\n",
+        "\n",
+        "- (2,3)*(3,2)\n",
+        "- (4,4)*(4,1)\n",
+        "- (2,2)*(2,2)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy"
+      ],
+      "metadata": {
+        "id": "ee7sVVVn0J5R"
+      },
+      "execution_count": 10,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##(2,3)*(3,2)"
+      ],
+      "metadata": {
+        "id": "xciuys_L_ZdZ"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat1 = numpy.array([[2,4,6],[3,5,7]])\n",
+        "mat2 = numpy.array([[3,4],[3,5],[3,6]])"
+      ],
+      "metadata": {
+        "id": "lK2NowDt6hOi"
+      },
+      "execution_count": 13,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def mat_mul(A,B):\n",
+        "    C = numpy.zeros((A.shape[0],B.shape[1]))#เตรียมขนาดของ matrix ผลลัพธ์\n",
+        "    for r_a in range(A.shape[0]):\n",
+        "        for c_b in range(B.shape[1]):\n",
+        "            for every_element in range(A.shape[1]):\n",
+        "                C[r_a,c_b] = C[r_a,c_b] + (A[r_a,every_element] * B[every_element,c_b])\n",
+        "    return C"
+      ],
+      "metadata": {
+        "id": "myQSOW05-ZTC"
+      },
+      "execution_count": 15,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat_mul(mat1,mat2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "b9d9AhS4-c0o",
+        "outputId": "ff90ea90-dafa-49a7-8e69-b4b7641a365a"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[36., 64.],\n",
+              "       [45., 79.]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##(4,4)*(4,1)"
+      ],
+      "metadata": {
+        "id": "vlxUwzmb_gwH"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat3 = numpy.array([[2,4,6,8],[3,5,7,9],[4,8,12,16],[2,3,5,7]])\n",
+        "mat4 = numpy.array([[3],[4],[1],[39]])"
+      ],
+      "metadata": {
+        "id": "yiQIPYWI_q8z"
+      },
+      "execution_count": 21,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat_mul(mat3,mat4)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pBLc-Ahv_9Q5",
+        "outputId": "61fa19fa-70cf-4235-b284-3dc150138b75"
+      },
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[340.],\n",
+              "       [387.],\n",
+              "       [680.],\n",
+              "       [296.]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 23
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "##(2,2)*(2,2)"
+      ],
+      "metadata": {
+        "id": "rkEbu0eS_g3a"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat5 = numpy.array([[2,4],[3,5]])\n",
+        "mat6 = numpy.array([[3,4],[1,39]])"
+      ],
+      "metadata": {
+        "id": "MgcbMuWpAm3x"
+      },
+      "execution_count": 24,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mat5 * mat6"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "E_ZpswERBCaR",
+        "outputId": "676e5a5b-50e5-47aa-e4f0-c69895d9e31f"
+      },
+      "execution_count": 25,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[  6,  16],\n",
+              "       [  3, 195]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 25
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "MTRX_1 = mat_mul(mat1,mat2)\n",
+        "MTRX_2 = mat_mul(mat3,mat4)\n",
+        "MTRX_3 = mat_mul(mat5,mat6)"
+      ],
+      "metadata": {
+        "id": "gdBPjHGNBpWx"
+      },
+      "execution_count": 26,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "788125b8",
+        "outputId": "1dd79904-0d87-4348-a956-315975771477"
+      },
+      "source": [
+        "# Test ขนาดของ Matrix\n",
+        "print('Shape of MTRX_1:', MTRX_1.shape)\n",
+        "print('Shape of MTRX_2:', MTRX_2.shape)\n",
+        "print('Shape of MTRX_3:', MTRX_3.shape)"
+      ],
+      "execution_count": 34,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Shape of MTRX_1: (2, 2)\n",
+            "Shape of MTRX_2: (4, 1)\n",
+            "Shape of MTRX_3: (2, 2)\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
